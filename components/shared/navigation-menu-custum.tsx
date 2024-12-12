@@ -42,7 +42,7 @@ export function NavigationMenuDemo() {
                     href="/"
                   >
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      GSPM - ADJAMÈ/ SOS-AI
+                      GSPM - ADJAME
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       Bienvenue sur la plateforme de gestion des interventions

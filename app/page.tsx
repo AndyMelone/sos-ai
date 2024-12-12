@@ -79,6 +79,9 @@ export default function Home() {
           <div className="my-4">
             <h1 className="text-lg my-4">Nos interventions</h1>
             <div className="flex gap-2">
+              <Button className="bg-black">
+                <p className="text-white">Toutes</p>
+              </Button>
               <Button>Incendie</Button>
               <Button>Accident</Button>
               <Button>Malaise</Button>
