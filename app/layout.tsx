@@ -49,7 +49,7 @@ export default function RootLayout({
             </div>
             <div className="flex gap-8">
               <Link href="/notifications">
-                <Badge count={5}>
+                <Badge count={1}>
                   <AiTwotoneAlert size={28} />
                 </Badge>
               </Link>

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 
@@ -9,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useRouter } from "next/navigation";
 
 const urgence = [
   {
@@ -20,7 +22,8 @@ const urgence = [
   },
 ];
 
-export default function page() {
+export default function Page() {
+  const router = useRouter();
   return (
     <>
       <div className="border rounded-xl px-3 py-8">
@@ -39,13 +42,24 @@ export default function page() {
           </TableHeader>
           <TableBody>
             {urgence.map((item) => (
-              <TableRow key={item.id}>
+              <TableRow
+                key={item.id}
+                onClick={() => router.push("/notifications/urgence")}
+              >
                 <TableCell>
                   <Link href={`notifications/urgence`}>{item.status}</Link>
                 </TableCell>
-                <TableCell>{item.date}</TableCell>
-                <TableCell>{item.intervention}</TableCell>
-                <TableCell>{item.lieux}</TableCell>
+                <TableCell>
+                  <Link href={`notifications/urgence`}>{item.date}</Link>
+                </TableCell>
+                <TableCell>
+                  <Link href={`notifications/urgence`}>
+                    {item.intervention}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link href={`notifications/urgence`}>{item.lieux}</Link>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
