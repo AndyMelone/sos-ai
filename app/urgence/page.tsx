@@ -20,40 +20,47 @@ export default function Page() {
     <>
       <div className="border-b pb-4">
         <h1 className="text-2xl font-semibold mb-4">
-          Urgence : 🚨 Icendit de vehicule a YOP
+          Urgence : 🚨 Incendit de vehicule a YOP
         </h1>
         <div className="justify-between flex">
           <div className="flex gap-2">
             <Button className="bg-red-600 hover:bg-red-400">Urgent</Button>
-            <Button>Incendit</Button>
+            <Button className="">Incendit</Button>
           </div>
-          <div className="mx-5 z-10">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="outline">Accepter</Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    Voulez vous vraiment accepter cette urgence?
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Cette action est irreversible.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Annuler</AlertDialogCancel>
-                  <AlertDialogAction
-                    onClick={() => {
-                      toast.success("Prise en charge effectuer avec succées.");
-                      router.push("/");
-                    }}
-                  >
-                    Continue
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+          <div className="flex gap-3 mx-5">
+            <div className=" z-10">
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline">Accepter</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Voulez vous vraiment accepter cette urgence?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Cette action est irreversible.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Annuler</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => {
+                        toast.success(
+                          "Prise en charge effectuer avec succées."
+                        );
+                        router.push("/");
+                      }}
+                    >
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+            <Button variant="outline" className="bg-slate-300">
+              Rédiriger
+            </Button>
           </div>
         </div>
       </div>
@@ -93,7 +100,7 @@ export default function Page() {
       </div>
       <div className="">
         <p className="mt-4">
-          <span className="font-semibold">Nom et prenom:</span> Koffi Kouassi
+          <span className="font-semibold">Nom et prenom:</span> Koffi
         </p>
         <p className="mt-4">
           <span className="font-semibold">Appelant:</span> 225 07 07 07 07

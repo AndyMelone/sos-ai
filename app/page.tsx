@@ -1,7 +1,10 @@
+"use client";
+
 import Card from "@/components/shared/card";
 import { FaCarCrash, FaTint, FaHeartbeat, FaBolt } from "react-icons/fa";
-
+import { io } from "socket.io-client";
 import { Button } from "antd";
+import { useEffect, useState } from "react";
 const interventionData = [
   {
     currentValue: "58", // Nombre d'accidents actuels
@@ -64,7 +67,29 @@ const interventionData = [
     currentTime: new Date(),
   },
 ];
+
+const socket = io("http://127.0.0.1:3001");
 export default function Home() {
+  const [alertMessage, setAlertMessage] = useState("");
+
+  useEffect(() => {
+    // Écouter l'événement "showAlert"
+    socket.on("alertTriggered", (message) => {
+      alert(message); // Affiche une alerte avec le message reçu
+      setAlertMessage(message);
+    });
+
+    return () => {
+      socket.off("showAlert");
+    };
+  }, [alertMessage]);
+
+  socket.on("alertTriggered", (message) => {
+    alert(message); // Affiche une alerte avec le message reçu
+    setAlertMessage(message);
+    console.log("okokokokok");
+  });
+
   return (
     <>
       <div className="w-full flex">
