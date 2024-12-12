@@ -37,7 +37,8 @@ export default function RootLayout({
               onClick={() => router.push("/")}
               className="text-2xl font-bold cursor-pointer"
             >
-              SOS-AI
+              S<span className="text-red-700">O</span>
+              S-AI
             </h1>
 
             <NavigationMenuDemo />
@@ -53,8 +54,8 @@ export default function RootLayout({
                   <AiTwotoneAlert size={28} />
                 </Badge>
               </Link>
-              <CiLight size={28} />
-              <IoIosLogOut size={28} />
+              <CiLight size={28} className="cursor-pointer" />
+              <IoIosLogOut size={28} className="cursor-pointer" />
             </div>
           </div>
         </div>

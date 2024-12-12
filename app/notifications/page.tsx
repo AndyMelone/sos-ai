@@ -42,10 +42,7 @@ export default function Page() {
           </TableHeader>
           <TableBody>
             {urgence.map((item) => (
-              <TableRow
-                key={item.id}
-                onClick={() => router.push("/notifications/urgence")}
-              >
+              <TableRow key={item.id} onClick={() => router.push("/urgence")}>
                 <TableCell>
                   <Link href={`notifications/urgence`}>{item.status}</Link>
                 </TableCell>
