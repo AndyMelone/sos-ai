@@ -15,10 +15,10 @@ import { useRouter } from "next/navigation";
 const urgence = [
   {
     id: 1,
-    status: "Non pris en charge",
-    date: "2021-10-10",
-    intervention: "Intervention 1",
-    lieux: "Lieux 1",
+    status: "SOS-AI",
+    date: "Il y a 20 secondes",
+    intervention: "Intervention sur feux de vehicule",
+    lieux: "Yopougon koweit",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function Page() {
         <Table>
           <TableHeader className="bg-gray-600 ">
             <TableRow>
-              <TableHead className=" text-white">Status</TableHead>
+              <TableHead className=" text-white">Sources</TableHead>
               <TableHead className="text-white">Date</TableHead>
               <TableHead className="text-white">Intervention</TableHead>
               <TableHead className=" text-white">lieux</TableHead>
