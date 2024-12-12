@@ -1,8 +1,21 @@
 "use client";
-
 import React from "react";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 export default function Page() {
+  const router = useRouter();
   return (
     <>
       <div className="border-b pb-4">
@@ -14,10 +27,33 @@ export default function Page() {
             <Button className="bg-red-600 hover:bg-red-400">Urgent</Button>
             <Button>Incendit</Button>
           </div>
-          <div className="mx-5">
-            <Button variant={"outline"} className="bg-slate-200 border">
-              Valider
-            </Button>
+          <div className="mx-5 z-10">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline">Accepter</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    Voulez vous vraiment accepter cette urgence?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Cette action est irreversible.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Annuler</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() => {
+                      toast.success("Prise en charge effectuer avec succées.");
+                      router.push("/");
+                    }}
+                  >
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </div>
       </div>
