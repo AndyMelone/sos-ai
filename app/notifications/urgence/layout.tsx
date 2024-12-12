@@ -1,3 +1,6 @@
+"use client";
+
+import MapComponent from "@/components/shared/MapComponent";
 import React, { ReactNode } from "react";
 
 interface LayoutProps {
@@ -13,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
       <div className="flex">
         <div className="w-3/5">{children}</div>
         <div className="w-2/5 border">
-          <p>hello</p>
+          <MapComponent />
         </div>
       </div>
     </div>
