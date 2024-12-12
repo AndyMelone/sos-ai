@@ -11,6 +11,9 @@ import { Badge } from "antd";
 import { CiLight } from "react-icons/ci";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import io from "socket.io-client";
+import { useEffect, useState } from "react";
+import { NotificationContext } from "@/context/notification-context";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,41 +30,60 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter();
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-          <div className="flex justify-between items-center p-4">
-            <h1
-              onClick={() => router.push("/")}
-              className="text-2xl font-bold cursor-pointer"
-            >
-              S<span className="text-red-700">O</span>
-              S-AI
-            </h1>
+  useEffect(() => {
+    const socket = io("http://localhost:3000");
+    socket.on("showAlert", (msg) => {
+      console.log(msg);
+    });
 
-            <NavigationMenuDemo />
-            <div>
-              <Input
-                placeholder="Effectuer une recherche avancée"
-                suffix={<SearchOutlined style={{ color: "rgba(0,0,0,.45)" }} />}
-              />
-            </div>
-            <div className="flex gap-8">
-              <Link href="/notifications">
-                <Badge count={1}>
-                  <AiTwotoneAlert size={28} />
-                </Badge>
-              </Link>
-              <CiLight size={28} className="cursor-pointer" />
-              <IoIosLogOut size={28} className="cursor-pointer" />
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  const [notification, setNotification] = useState(true);
+
+  return (
+    <NotificationContext.Provider value={notification}>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+            <div className="flex justify-between items-center p-4">
+              <h1
+                onClick={() => router.push("/")}
+                className="text-2xl font-bold cursor-pointer"
+              >
+                S<span className="text-red-700">O</span>
+                S-AI
+              </h1>
+
+              <NavigationMenuDemo />
+              <div>
+                <Input
+                  placeholder="Effectuer une recherche avancée"
+                  suffix={
+                    <SearchOutlined style={{ color: "rgba(0,0,0,.45)" }} />
+                  }
+                />
+              </div>
+              <div className="flex gap-8">
+                <Link href="/notifications">
+                  <Badge count={1}>
+                    <AiTwotoneAlert size={28} />
+                  </Badge>
+                </Link>
+                <CiLight size={28} className="cursor-pointer" />
+                <IoIosLogOut size={28} className="cursor-pointer" />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="mt-20 h-screen overflow-y-scroll mx-10">{children}</div>
-      </body>
-    </html>
+          <div className="mt-20 h-screen overflow-y-scroll mx-10">
+            {children}
+          </div>
+        </body>
+      </html>
+    </NotificationContext.Provider>
   );
 }
