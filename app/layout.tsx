@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import "leaflet/dist/leaflet.css";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -13,7 +14,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import io from "socket.io-client";
 import { useEffect, useState } from "react";
-import { NotificationContext } from "@/context/notification-context";
+import NotificationContext, {
+  useNotificationContext,
+} from "@/context/notification-context";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -40,11 +43,15 @@ export default function RootLayout({
       socket.disconnect();
     };
   }, []);
+  const [user, setUser] = useState<any>(null);
 
-  const [notification, setNotification] = useState(true);
+  const value = {
+    user,
+    setUser,
+  };
 
   return (
-    <NotificationContext.Provider value={notification}>
+    <NotificationContext.Provider value={value}>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -70,7 +77,7 @@ export default function RootLayout({
               </div>
               <div className="flex gap-8">
                 <Link href="/notifications">
-                  <Badge count={1}>
+                  <Badge count={user ? "1" : 0}>
                     <AiTwotoneAlert size={28} />
                   </Badge>
                 </Link>
