@@ -1,12 +1,15 @@
 "use client";
 import { Toaster } from "react-hot-toast";
-import MapComponent from "@/components/shared/MapComponent";
+import dynamic from "next/dynamic";
 import React, { ReactNode } from "react";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
+const MapComponent = dynamic(() => import("@/components/shared/MapComponent"), {
+  ssr: false,
+});
 export default function Layout({ children }: LayoutProps) {
   return (
     <div className="w-full mt-5">

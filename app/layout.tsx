@@ -1,4 +1,5 @@
 "use client";
+import "leaflet/dist/leaflet.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NavigationMenuDemo } from "@/components/shared/navigation-menu-custum";
