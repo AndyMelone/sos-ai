@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import "leaflet/dist/leaflet.css";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -12,11 +11,8 @@ import { Badge } from "antd";
 import { CiLight } from "react-icons/ci";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import io from "socket.io-client";
-import { useEffect, useState } from "react";
-import NotificationContext, {
-  useNotificationContext,
-} from "@/context/notification-context";
+import { useState } from "react";
+import NotificationContext from "@/context/notification-context";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,17 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter();
-  useEffect(() => {
-    const socket = io("http://localhost:3000");
-    socket.on("showAlert", (msg) => {
-      console.log(msg);
-    });
 
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState(null);
 
   const value = {
     user,

@@ -1,5 +1,5 @@
 import { HiArrowTrendingDown, HiArrowTrendingUp } from "react-icons/hi2";
-import { ReactElement, JSXElementConstructor, forwardRef } from "react";
+import { ReactElement, JSXElementConstructor } from "react";
 
 // Typage des props pour la carte d'intervention d'urgence
 interface CardProps {
@@ -96,4 +96,4 @@ function Card({
   );
 }
 
-export default forwardRef(Card);
+export default Card;
